@@ -12,6 +12,20 @@ namespace ProcessCommander.Processes
 {
     public class MyProcessManager
     {
+
+        public IList<Process> GetAccessableProcess(string name)
+        {
+            List<Process> accessedProcesses = new List<Process>();
+            foreach (var process in Process.GetProcessesByName(name))
+            {
+                if (IsAccessable(process))
+                {
+                    accessedProcesses.Add(process);
+                }
+            }
+
+            return accessedProcesses;
+        }
         public IList<Process> GetAllAccessableProcesses()
         {
             List<Process> accessedProcesses = new List<Process>();

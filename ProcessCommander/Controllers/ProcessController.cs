@@ -30,5 +30,13 @@ namespace ProcessCommander.Controllers
             return _mapper.Map<ProcessModel[]>(processes);
         }
 
+        [HttpGet("{name}")]
+        public ActionResult<ProcessModel[]> GetProcessByName(string name)
+        {
+            var processes = _processManager.GetAccessableProcess(name);
+            if (processes == null) return NotFound();
+            return _mapper.Map<ProcessModel[]>(processes);
+        }
+
     }
 }
