@@ -9,8 +9,6 @@ namespace ProcessCommander.Models
     {
         public string ProcessName { get; set; }
         public DateTime StartTime { get; set; }
-        public DateTime TotalProcessorTime { get; set; }
-//        public string RamUsage { get; set; }
-//        public string CpuUsage { get; set; }
+        public TimeSpan TotalProcessorTime { get; set; }
     }
 }
