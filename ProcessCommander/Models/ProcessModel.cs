@@ -10,5 +10,7 @@ namespace ProcessCommander.Models
         public string ProcessName { get; set; }
         public DateTime StartTime { get; set; }
         public TimeSpan TotalProcessorTime { get; set; }
+        private float CpuUsage { get; set; }
+        private float MemoryUsage { get; set; }
     }
 }
