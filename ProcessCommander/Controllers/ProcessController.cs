@@ -14,20 +14,20 @@ namespace ProcessCommander.Controllers
     public class ProcessController : ControllerBase
     {
         private readonly IMapper _mapper;
-        private readonly ProcessManager processManager;
+        private readonly MyProcessManager _processManager;
 
         public ProcessController(IMapper mapper)
         {
             _mapper = mapper;
-            processManager = new ProcessManager();
+            _processManager = new MyProcessManager();
         }
 
         [HttpGet]
         public ActionResult<ProcessModel[]> GetAllProcesses()
         {
-            var processes = processManager.GetAllProcesses();
-            if (processes == null) return NotFound("Not Found");
-            return Ok(_mapper.Map<ProcessModel[]>(processes));
+            var processes = _processManager.GetAllAccessableProcesses();
+            if (processes == null) return NotFound();
+            return _mapper.Map<ProcessModel[]>(processes);
         }
 
     }
