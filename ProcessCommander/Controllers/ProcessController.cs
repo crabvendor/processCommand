@@ -31,6 +31,7 @@ namespace ProcessCommander.Controllers
             foreach (ProcessModel processModel in processModels)
             {
                 processModel.CpuUsage =_processManager.getProcessCpuUsage(processModel.ProcessName, processes);
+                processModel.MemoryUsage = _processManager.GetRamUsageForProcess(processModel.ProcessName, processes) + " MB";
             }
             return processModels;
         }

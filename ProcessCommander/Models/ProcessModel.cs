@@ -11,6 +11,6 @@ namespace ProcessCommander.Models
         public DateTime StartTime { get; set; }
         public TimeSpan TotalProcessorTime { get; set; }
         public double CpuUsage { get; set; }
-        public double MemoryUsage { get; set; }
+        public string MemoryUsage { get; set; }
     }
 }
