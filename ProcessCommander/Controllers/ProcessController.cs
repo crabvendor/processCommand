@@ -38,5 +38,10 @@ namespace ProcessCommander.Controllers
             return _mapper.Map<ProcessModel[]>(processes);
         }
 
+        [HttpDelete("{name}")]
+        public void KillProcessByName(string name)
+        {
+            _processManager.KillProcessByName(name);
+        }
     }
 }

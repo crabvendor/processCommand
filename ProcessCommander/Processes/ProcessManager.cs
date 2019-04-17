@@ -12,7 +12,17 @@ namespace ProcessCommander.Processes
 {
     public class MyProcessManager
     {
-
+        public void KillProcessByName(string name)
+        {
+            List<Process> accessedProcesses = new List<Process>();
+            foreach (var process in Process.GetProcessesByName(name))
+            {
+                if (IsAccessable(process))
+                {
+                    process.Kill();
+                }
+            }
+        }
         public IList<Process> GetAccessableProcess(string name)
         {
             List<Process> accessedProcesses = new List<Process>();
