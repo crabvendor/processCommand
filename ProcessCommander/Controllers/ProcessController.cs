@@ -24,11 +24,18 @@ namespace ProcessCommander.Controllers
 
         [HttpGet]
         public ActionResult<ProcessModel[]> GetAllProcesses()
-        {
+        {   
             var processes = _processManager.GetAllAccessableProcesses();
             if (processes == null) return NotFound();
-            return _mapper.Map<ProcessModel[]>(processes);
+            ProcessModel[] processModels = _mapper.Map<ProcessModel[]>(processes);
+            foreach (ProcessModel processModel in processModels)
+            {
+                processModel.CpuUsage =_processManager.getProcessCpuUsage(processModel.ProcessName, processes);
+            }
+            return processModels;
         }
+
+       
 
     }
 }
