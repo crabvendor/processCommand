@@ -78,7 +78,7 @@ namespace ProcessCommander.Processes
             {
                 var processStartTime = process.StartTime;
             }
-            catch (Win32Exception e)
+            catch (Win32Exception)
             {
                 return false;
             }
