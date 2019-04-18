@@ -13,14 +13,14 @@ namespace ProcessCommander.Processes
 {
     public class MyProcessManager
     {
-        public void KillProcessByName(string name)
+        public void KillProcessesByName(string name)
         {
             foreach (var process in Process.GetProcessesByName(name))
             {
                  process.Kill();
             }
         }
-        public IList<Process> GetAccessableProcess(string name)
+        public IList<Process> GetAccessableProcessGroup(string name)
         {
             List<Process> accessedProcesses = new List<Process>();
             foreach (var process in Process.GetProcessesByName(name))
