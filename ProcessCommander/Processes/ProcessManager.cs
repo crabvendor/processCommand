@@ -53,7 +53,6 @@ namespace ProcessCommander.Processes
             var startTime = DateTime.UtcNow;
             var startCpuUsage = process.TotalProcessorTime;
             await Task.Delay(500);
-
             var endTime = DateTime.UtcNow;
             var endCpuUsage = process.TotalProcessorTime;
             var cpuUsedMs = (endCpuUsage - startCpuUsage).TotalMilliseconds;
@@ -62,34 +61,15 @@ namespace ProcessCommander.Processes
             return cpuUsageTotal * 100;
         }
 
-        public double GetRamUsageForProcess(string processName, IList<Process> processes)
+        public string GetProcessRamUsage(Process process)
         {
-            double ramUsage = 0;
-            foreach (Process process in processes)
-            {
-                if (process.ProcessName == processName)
-                {
-                    ramUsage = process.WorkingSet64;
-                    return ramUsage/(1000*1000); // Bajty zamienione na MB
-                }
-            }
-
-            return ramUsage;
+            return $"{process.WorkingSet64}MB";
         }
 
-        public double getProcessCpuUsage(string processName, IList<Process> processes)
-        {
-            double cpuUsage = 0;
-            foreach (Process process in processes)
-            {
-                if (process.ProcessName == processName)
-                {
-                    cpuUsage = GetCpuUsageForProcess(process).Result;
-                    return cpuUsage;
-                }
-            }
 
-            return cpuUsage;
+        public double GetProcessCpuUsage(Process process)
+        {
+            return GetCpuUsageForProcess(process).Result;
         }
 
         private bool IsAccessable(Process process)
