@@ -30,7 +30,6 @@ namespace ProcessCommander.Processes
                     accessedProcesses.Add(process);
                 }
             }
-
             return accessedProcesses;
         }
         public IList<Process> GetAllAccessableProcesses()
@@ -43,13 +42,11 @@ namespace ProcessCommander.Processes
                     accessedProcesses.Add(process);
                 }
             }
-
             return accessedProcesses;
         }
 
         public async Task<double> GetCpuUsageForProcess(Process process)
-        {
-            
+        {   
             var startTime = DateTime.UtcNow;
             var startCpuUsage = process.TotalProcessorTime;
             await Task.Delay(500);
@@ -65,7 +62,6 @@ namespace ProcessCommander.Processes
         {
             return $"{process.WorkingSet64}MB";
         }
-
 
         public double GetProcessCpuUsage(Process process)
         {
