@@ -5,6 +5,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
+using Microsoft.AspNetCore.Http;
 using Microsoft.IdentityModel.Tokens;
 using ProcessCommander.Models;
 
@@ -14,13 +15,9 @@ namespace ProcessCommander.Processes
     {
         public void KillProcessByName(string name)
         {
-            List<Process> accessedProcesses = new List<Process>();
             foreach (var process in Process.GetProcessesByName(name))
             {
-                if (IsAccessable(process))
-                {
-                    process.Kill();
-                }
+                 process.Kill();
             }
         }
         public IList<Process> GetAccessableProcess(string name)
