@@ -14,6 +14,5 @@ namespace ProcessCommander.Models
         public string UserName => Environment.UserName;
 
         public string MachineName => Environment.MachineName;
-        public string ProcessorInfo { get; set; }
     }
 }
