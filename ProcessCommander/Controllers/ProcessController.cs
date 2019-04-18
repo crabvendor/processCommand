@@ -31,11 +31,11 @@ namespace ProcessCommander.Controllers
             var processes = _processManager.GetAllAccessableProcesses();
             if (processes == null) return NotFound();
             ProcessModel[] processModels = _mapper.Map<ProcessModel[]>(processes);
-            foreach (ProcessModel processModel in processModels)
-            {
-                processModel.CpuUsage =_processManager.getProcessCpuUsage(processModel.ProcessName, processes);
-                processModel.MemoryUsage = _processManager.GetRamUsageForProcess(processModel.ProcessName, processes) + " MB";
-            }
+//            foreach (ProcessModel processModel in processModels)
+//            {
+//                processModel.CpuUsage =_processManager.getProcessCpuUsage(processModel.ProcessName, processes);
+//                processModel.MemoryUsage = _processManager.GetRamUsageForProcess(processModel.ProcessName, processes) + " MB";
+//            }
             return processModels;
         }
         [HttpGet("{name}")]
@@ -43,7 +43,13 @@ namespace ProcessCommander.Controllers
         {
             var processes = _processManager.GetAccessableProcess(name);
             if (processes == null) return NotFound();
-            return _mapper.Map<ProcessModel[]>(processes);
+            ProcessModel[] processModels = _mapper.Map<ProcessModel[]>(processes);
+            foreach (ProcessModel processModel in processModels)
+            {
+                processModel.CpuUsage = _processManager.getProcessCpuUsage(processModel.ProcessName, processes);
+                processModel.MemoryUsage = _processManager.GetRamUsageForProcess(processModel.ProcessName, processes) + " MB";
+            }
+            return processModels;
         }
 
         [HttpDelete("{name}")]
