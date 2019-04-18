@@ -16,7 +16,7 @@ namespace ProcessCommander.Controllers
         [HttpGet]
         public ActionResult<ResourcesModel> GetResources()
         {
-            return Ok(new ResourcesModel());
+            return new ResourcesModel();
         }
     }
 }
