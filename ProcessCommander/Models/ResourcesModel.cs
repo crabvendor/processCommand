@@ -8,11 +8,11 @@ namespace ProcessCommander.Models
 {
     public class ResourcesModel
     {
-        public string OperatingSystemInfo => System.Runtime.InteropServices.RuntimeInformation.OSDescription;
+        public string OperatingSystemInfo { get; set; }
 
-        public string Os => Environment.OSVersion.ToString();
-        public string UserName => Environment.UserName;
+        public string Os { get; set; }
+        public string UserName { get; set; }
 
-        public string MachineName => Environment.MachineName;
+        public string MachineName { get; set;}
     }
 }
