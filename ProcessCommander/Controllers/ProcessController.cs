@@ -36,7 +36,7 @@ namespace ProcessCommander.Controllers
         [HttpGet("{name}")]
         public ActionResult<ProcessModel[]> GetProcessByName(string name)
         {
-            var processes = _processManager.GetAccessableProcess(name);
+            var processes = _processManager.GetAccessableProcessGroup(name);
             if (processes == null) return NotFound();
             ProcessModel[] processModels = _mapper.Map<ProcessModel[]>(processes);
 
@@ -53,7 +53,7 @@ namespace ProcessCommander.Controllers
         {
             try
             {
-               _processManager.KillProcessByName(name);
+               _processManager.KillProcessesByName(name);
                return Ok();
             }
             catch (Win32Exception)
