@@ -47,7 +47,7 @@ namespace ProcessCommander.Processes
             return accessedProcesses;
         }
 
-        private async Task<double> GetCpuUsageForProcess(Process process)
+        public async Task<double> GetCpuUsageForProcess(Process process)
         {
             
             var startTime = DateTime.UtcNow;
@@ -61,6 +61,22 @@ namespace ProcessCommander.Processes
             var cpuUsageTotal = cpuUsedMs / (Environment.ProcessorCount * totalMsPassed);
             return cpuUsageTotal * 100;
         }
+
+        public double GetRamUsageForProcess(string processName, IList<Process> processes)
+        {
+            double ramUsage = 0;
+            foreach (Process process in processes)
+            {
+                if (process.ProcessName == processName)
+                {
+                    ramUsage = process.WorkingSet64;
+                    return ramUsage/(1000*1000); // Bajty zamienione na MB
+                }
+            }
+
+            return ramUsage;
+        }
+
         public double getProcessCpuUsage(string processName, IList<Process> processes)
         {
             double cpuUsage = 0;
@@ -68,13 +84,8 @@ namespace ProcessCommander.Processes
             {
                 if (process.ProcessName == processName)
                 {
-                    Console.WriteLine("Weszłem");
                     cpuUsage = GetCpuUsageForProcess(process).Result;
                     return cpuUsage;
-                }
-                else
-                {
-                    Console.WriteLine("Nie weszłeś");
                 }
             }
 
