@@ -60,7 +60,7 @@ namespace ProcessCommander.Processes
 
         public string GetProcessRamUsage(Process process)
         {
-            return $"{process.WorkingSet64}MB";
+            return $"{process.WorkingSet64 / 1000000 }MB";
         }
 
         public double GetProcessCpuUsage(Process process)
@@ -82,3 +82,4 @@ namespace ProcessCommander.Processes
         }
     }
 }
+    
